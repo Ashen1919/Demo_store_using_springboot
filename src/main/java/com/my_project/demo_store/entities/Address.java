@@ -7,12 +7,14 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 @Entity
 @Table(name = "addresses")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(nullable = false, name = "street")
@@ -21,9 +23,14 @@ public class Address {
     @Column(nullable = false, name = "city")
     private String city;
 
-    @Column(nullable = false, name = "zip")
+    @Column(nullable = false, name = "zip") // no need nullable, it doesn't provide any validation here
     private String zip;
 
     @Column(nullable = false, name = "state")
     private String state;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @ToString.Exclude
+    private User user;
 }
