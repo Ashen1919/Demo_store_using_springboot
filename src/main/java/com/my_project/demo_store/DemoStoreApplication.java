@@ -2,6 +2,8 @@ package com.my_project.demo_store;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.my_project.demo_store.entities.Address;
+import com.my_project.demo_store.entities.Profile;
+import com.my_project.demo_store.entities.Tag;
 import com.my_project.demo_store.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,14 +20,12 @@ public class DemoStoreApplication {
                 .email("john@example.com")
                 .build();
 
-        var address = Address.builder()
-                .street("Street")
-                .city("City")
-                .state("State")
-                .zip("Zip")
-                .build();
+        var profile = Profile.builder()
+                        .bio("bio")
+                        .build();
 
-        user.addAddress(address);
+        user.setProfile(profile);
+
         System.out.println(user);
     }
 

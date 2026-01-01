@@ -27,4 +27,9 @@ public class Profile {
 
     @Column(nullable = false, name = "loyalty_points")
     private String loyaltyPoints;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    private User user;
 }
