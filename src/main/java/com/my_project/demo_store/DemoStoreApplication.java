@@ -5,28 +5,21 @@ import com.my_project.demo_store.entities.Address;
 import com.my_project.demo_store.entities.Profile;
 import com.my_project.demo_store.entities.Tag;
 import com.my_project.demo_store.entities.User;
+import com.my_project.demo_store.repositories.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class DemoStoreApplication {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(DemoStoreApplication.class, args);
-        var user = User.builder()
-                .name("John")
-                .password("password")
-                .email("john@example.com")
-                .build();
+        ApplicationContext context =  SpringApplication.run(DemoStoreApplication.class, args);
+        var repository = context.getBean(UserRepository.class);
 
-        var profile = Profile.builder()
-                        .bio("bio")
-                        .build();
+        repository.deleteById(1L);
 
-        user.setProfile(profile);
-
-        System.out.println(user);
     }
 
 }
